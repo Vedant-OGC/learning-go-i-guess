@@ -3,8 +3,12 @@ package basics
 import "fmt"
 
 func Variables() {
-	// := is weird, why not just var?
 	x := 10
 	var y string = "hello"
-	fmt.Println(x, y)
+	var z float64 = 20.5
+	fmt.Println(x, y, z)
+	
+	// multiple declarations
+	a, b := 1, 2
+	fmt.Println(a, b)
 }
