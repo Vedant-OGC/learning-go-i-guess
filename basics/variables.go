@@ -8,7 +8,10 @@ func Variables() {
 	var z float64 = 20.5
 	fmt.Println(x, y, z)
 	
-	// multiple declarations
 	a, b := 1, 2
 	fmt.Println(a, b)
+	
+	// fixed the unused variable error!
+	var used int = 5
+	fmt.Println("used variable:", used)
 }
