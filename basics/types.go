@@ -9,4 +9,8 @@ func Types() {
 	var d bool = true
 	
 	fmt.Println(a, b, c, d)
+	
+	// type conversions
+	var e int = int(b)
+	fmt.Println("float to int:", e) // loses precision, classic
 }
