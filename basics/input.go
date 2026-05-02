@@ -7,11 +7,10 @@ import (
 )
 
 func Input() {
-	// bufio scanner allows spaces in inputs
 	scanner := bufio.NewScanner(os.Stdin)
-	fmt.Print("Enter full name: ")
+	fmt.Print("Please enter your full name: ")
 	if scanner.Scan() {
 		name := scanner.Text()
-		fmt.Println("Hello,", name)
+		fmt.Println("Welcome, user:", name)
 	}
 }
