@@ -1,10 +1,17 @@
 package basics
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+)
 
 func Input() {
-	var name string
-	fmt.Print("Enter name: ")
-	fmt.Scanln(&name)
-	fmt.Println("Hello,", name)
+	// bufio scanner allows spaces in inputs
+	scanner := bufio.NewScanner(os.Stdin)
+	fmt.Print("Enter full name: ")
+	if scanner.Scan() {
+		name := scanner.Text()
+		fmt.Println("Hello,", name)
+	}
 }
