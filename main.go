@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("learning go!")
+	fmt.Println("loops completed, day 4!")
 }
