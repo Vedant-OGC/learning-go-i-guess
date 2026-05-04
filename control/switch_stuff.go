@@ -3,13 +3,14 @@ package control
 import "fmt"
 
 func SwitchStuff() {
-	day := "Monday"
-	switch day {
-	case "Monday":
-		fmt.Println("start of week")
-	case "Friday":
-		fmt.Println("weekend near")
+	score := 85
+	// switch without condition
+	switch {
+	case score >= 90:
+		fmt.Println("Grade A")
+	case score >= 80:
+		fmt.Println("Grade B") // python if-elif is longer than this!
 	default:
-		fmt.Println("normal day")
+		fmt.Println("Grade C")
 	}
 }
