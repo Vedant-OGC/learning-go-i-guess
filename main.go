@@ -3,5 +3,5 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("loops completed, day 4!")
+	fmt.Println("switch statements are super cool, day 5!")
 }
