@@ -3,14 +3,11 @@ package control
 import "fmt"
 
 func SwitchStuff() {
-	score := 85
-	// switch without condition
-	switch {
-	case score >= 90:
-		fmt.Println("Grade A")
-	case score >= 80:
-		fmt.Println("Grade B") // python if-elif is longer than this!
-	default:
-		fmt.Println("Grade C")
+	// multiple cases
+	switch num := 3; num {
+	case 1, 3, 5:
+		fmt.Println("odd")
+	case 2, 4, 6:
+		fmt.Println("even")
 	}
 }
