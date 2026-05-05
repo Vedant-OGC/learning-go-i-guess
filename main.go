@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	fmt.Println("switch statements are super cool, day 5!")
+	fmt.Println("day 6: functions completed!")
+	fmt.Println("doing some basic operations.")
 }
