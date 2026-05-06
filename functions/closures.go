@@ -2,13 +2,16 @@ package functions
 
 import "fmt"
 
-func makeAdder(x int) func(int) int {
-	return func(y int) int {
-		return x + y
-	}
-}
-
 func Closures() {
-	add10 := makeAdder(10)
-	fmt.Println(add10(5)) // 15
+	// closure capture bug
+	var funcs []func()
+	for i := 0; i < 4; i++ {
+		funcs = append(funcs, func() {
+			fmt.Println(i) // captured by reference!
+		})
+	}
+	
+	for _, f := range funcs {
+		f()
+	}
 }
