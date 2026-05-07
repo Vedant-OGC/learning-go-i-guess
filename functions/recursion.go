@@ -2,13 +2,13 @@ package functions
 
 import "fmt"
 
-func fact(n int) int {
-	if n == 0 {
-		return 1
+func fib(n int) int {
+	if n < 2 {
+		return n
 	}
-	return n * fact(n-1)
+	return fib(n-1) + fib(n-2)
 }
 
 func Recursion() {
-	fmt.Println(fact(7))
+	fmt.Println(fib(10))
 }
