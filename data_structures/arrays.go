@@ -3,10 +3,10 @@ package datastructures
 import "fmt"
 
 func Arrays() {
-	var a [5]int
-	fmt.Println("emp:", a)
+	b := [5]int{1, 2, 3, 4, 5}
+	fmt.Println("dcl:", b)
 	
-	a[4] = 100
-	fmt.Println("set:", a)
-	fmt.Println("get:", a[4])
+	for i, v := range b {
+		fmt.Printf("index %d = %d\n", i, v)
+	}
 }
