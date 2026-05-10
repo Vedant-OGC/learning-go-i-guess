@@ -2,17 +2,24 @@ package datastructures
 
 import "fmt"
 
-type Person struct {
-	Name string
-	Age  int
+type Address struct {
+	City, State string
 }
 
-// receiver parameter (value receiver)
-func (p Person) Greet() string {
-	return "Hello " + p.Name
+type Person struct {
+	Name    string
+	Age     int
+	Address Address // nested
 }
 
 func Structs() {
-	p := Person{Name: "Bob", Age: 20}
-	fmt.Println(p.Greet())
+	p := Person{
+		Name: "Alice",
+		Age:  30,
+		Address: Address{
+			City:  "Seattle",
+			State: "WA",
+		},
+	}
+	fmt.Println(p.Address.City)
 }
