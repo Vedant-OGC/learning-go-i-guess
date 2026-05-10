@@ -2,24 +2,14 @@ package datastructures
 
 import "fmt"
 
-type Address struct {
-	City, State string
-}
-
-type Person struct {
-	Name    string
-	Age     int
-	Address Address // nested
-}
-
 func Structs() {
-	p := Person{
-		Name: "Alice",
-		Age:  30,
-		Address: Address{
-			City:  "Seattle",
-			State: "WA",
-		},
+	// anonymous struct
+	dog := struct {
+		name string
+		isGood bool
+	}{
+		"Rex",
+		true,
 	}
-	fmt.Println(p.Address.City)
+	fmt.Println(dog.name, "is good boy?", dog.isGood)
 }
