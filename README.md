@@ -5,5 +5,6 @@ ok so im learning go.
 - basics (variables, types, constants, scanner)
 - control flow (loops, ifs, switch)
 - functions (closures, recursion)
+- data structures (slices, arrays, maps, structs)
 
-closures broke my brain for 2 days but we got there.
+slices are references and maps are cool.
