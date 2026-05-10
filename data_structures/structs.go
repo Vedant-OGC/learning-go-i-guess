@@ -7,7 +7,12 @@ type Person struct {
 	Age  int
 }
 
+// receiver parameter (value receiver)
+func (p Person) Greet() string {
+	return "Hello " + p.Name
+}
+
 func Structs() {
 	p := Person{Name: "Bob", Age: 20}
-	fmt.Println(p)
+	fmt.Println(p.Greet())
 }
