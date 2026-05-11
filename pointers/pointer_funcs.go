@@ -2,19 +2,17 @@ package pointers
 
 import "fmt"
 
-func zeroValue(x int) {
-	x = 0
+// lightbulb moment: pointers prevent copying big structs!
+type BigStruct struct {
+	data [1000]int
 }
 
-func zeroPointer(x *int) {
-	*x = 0
+func updateStruct(b *BigStruct) {
+	b.data[0] = 99
 }
 
 func PointerFuncs() {
-	i := 1
-	zeroValue(i)
-	fmt.Println("zeroValue:", i) // 1
-	
-	zeroPointer(&i)
-	fmt.Println("zeroPointer:", i) // 0
+	var b BigStruct
+	updateStruct(&b)
+	fmt.Println("updated struct without copying entire array:", b.data[0])
 }
