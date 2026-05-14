@@ -5,18 +5,17 @@ import (
 	"fmt"
 )
 
-func errorDemoFunc(arg int) (int, error) {
-	if arg == 42 {
-		return -1, errors.New("can't work with 42")
+func checkAge(age int) error {
+	if age < 0 {
+		return errors.New("age cannot be negative")
 	}
-	return arg + 3, nil
+	return nil
 }
 
 func ErrorHandling() {
-	res, err := errorDemoFunc(42)
+	err := checkAge(-5)
 	if err != nil {
-		fmt.Println("error:", err)
-	} else {
-		fmt.Println("result:", res)
+		// handling error
+		fmt.Println("caught:", err)
 	}
 }
