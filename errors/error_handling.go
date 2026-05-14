@@ -1,21 +1,17 @@
 package errorhandling
 
 import (
-	"errors"
 	"fmt"
 )
 
-func checkAge(age int) error {
-	if age < 0 {
-		return errors.New("age cannot be negative")
+// using fmt.Errorf to wrap errors with context
+func process(val int) error {
+	if val < 0 {
+		return fmt.Errorf("process failed: negative value %d not allowed", val)
 	}
 	return nil
 }
 
 func ErrorHandling() {
-	err := checkAge(-5)
-	if err != nil {
-		// handling error
-		fmt.Println("caught:", err)
-	}
+	fmt.Println(process(-10))
 }
