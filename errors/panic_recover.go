@@ -3,11 +3,9 @@ package errorhandling
 import "fmt"
 
 func PanicRecover() {
-	defer func() {
-		if r := recover(); r != nil {
-			fmt.Println("recovered from panic:", r)
-		}
-	}()
+	// defers execute in LIFO order
+	defer fmt.Println("first defer (executes last)")
+	defer fmt.Println("second defer (executes first)")
 	
-	panic("something bad happened")
+	fmt.Println("normal execution")
 }
