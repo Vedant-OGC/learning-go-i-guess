@@ -1,6 +1,9 @@
 package errorhandling
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 type MyError struct {
 	Code    int
@@ -11,13 +14,12 @@ func (e *MyError) Error() string {
 	return fmt.Sprintf("Error %d: %s", e.Code, e.Message)
 }
 
-func runCustomErrorDemo() error {
-	return &MyError{Code: 404, Message: "Not Found"}
-}
-
 func CustomErrors() {
-	err := runCustomErrorDemo()
-	if err != nil {
-		fmt.Println(err)
+	err := &MyError{Code: 500, Message: "Internal Fail"}
+	
+	// errors.As checks if an error matches target type
+	var myErr *MyError
+	if errors.As(err, &myErr) {
+		fmt.Println("matched error code:", myErr.Code)
 	}
 }
