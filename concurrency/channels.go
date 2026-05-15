@@ -3,12 +3,9 @@ package concurrency
 import "fmt"
 
 func Channels() {
-	messages := make(chan string)
+	// deadlock demo
+	// ch := make(chan int)
+	// ch <- 1 // blocks forever because no receiver!
 	
-	go func() {
-		messages <- "ping"
-	}()
-	
-	msg := <-messages
-	fmt.Println(msg)
+	fmt.Println("cannot write to unbuffered channel without active receiver")
 }
