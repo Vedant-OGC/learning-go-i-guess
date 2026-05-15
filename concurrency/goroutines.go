@@ -2,18 +2,21 @@ package concurrency
 
 import (
 	"fmt"
-	"time"
+	"sync"
 )
 
-func concurrencyDemoFunc(from string) {
-	for i := 0; i < 3; i++ {
-		fmt.Println(from, ":", i)
-	}
-}
-
 func Goroutines() {
-	go concurrencyDemoFunc("goroutine")
-	concurrencyDemoFunc("direct")
+	// race condition!
+	var counter int
+	var wg sync.WaitGroup
 	
-	time.Sleep(time.Millisecond * 100)
+	for i := 0; i < 1000; i++ {
+		wg.Add(1)
+		go func() {
+			counter++ // concurrent write, race condition!
+			wg.Done()
+		}()
+	}
+	wg.Wait()
+	fmt.Println("Counter (racy):", counter)
 }
