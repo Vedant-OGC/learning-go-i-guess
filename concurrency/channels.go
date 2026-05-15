@@ -3,9 +3,11 @@ package concurrency
 import "fmt"
 
 func Channels() {
-	// deadlock demo
-	// ch := make(chan int)
-	// ch <- 1 // blocks forever because no receiver!
+	// buffered channels allow sending values without receiver active
+	messages := make(chan string, 2)
+	messages <- "buffered"
+	messages <- "channel"
 	
-	fmt.Println("cannot write to unbuffered channel without active receiver")
+	fmt.Println(<-messages)
+	fmt.Println(<-messages)
 }
