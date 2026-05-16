@@ -3,11 +3,13 @@ package concurrency
 import "fmt"
 
 func Channels() {
-	// buffered channels allow sending values without receiver active
-	messages := make(chan string, 2)
-	messages <- "buffered"
-	messages <- "channel"
+	queue := make(chan string, 2)
+	queue <- "one"
+	queue <- "two"
+	close(queue) // closing channel
 	
-	fmt.Println(<-messages)
-	fmt.Println(<-messages)
+	// range over channel terminates when closed
+	for elem := range queue {
+		fmt.Println("received:", elem)
+	}
 }
