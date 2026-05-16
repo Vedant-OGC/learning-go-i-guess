@@ -3,13 +3,26 @@ package concurrency
 import "fmt"
 
 func Channels() {
-	queue := make(chan string, 2)
-	queue <- "one"
-	queue <- "two"
-	close(queue) // closing channel
+	// producer consumer demo
+	jobs := make(chan int, 5)
+	done := make(chan bool)
 	
-	// range over channel terminates when closed
-	for elem := range queue {
-		fmt.Println("received:", elem)
+	go func() {
+		for {
+			j, more := <-jobs
+			if more {
+				fmt.Println("received job", j)
+			} else {
+				fmt.Println("received all jobs")
+				done <- true
+				return
+			}
+		}
+	}()
+	
+	for j := 1; j <= 3; j++ {
+		jobs <- j
 	}
+	close(jobs)
+	<-done
 }
