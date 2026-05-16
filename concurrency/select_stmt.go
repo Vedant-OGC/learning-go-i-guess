@@ -6,24 +6,16 @@ import (
 )
 
 func SelectStmt() {
-	c1 := make(chan string)
-	c2 := make(chan string)
-	
+	c1 := make(chan string, 1)
 	go func() {
-		time.Sleep(time.Second)
-		c1 <- "one"
-	}()
-	go func() {
-		time.Sleep(time.Second * 2)
-		c2 <- "two"
+		time.Sleep(2 * time.Second)
+		c1 <- "result 1"
 	}()
 	
-	for i := 0; i < 2; i++ {
-		select {
-		case msg1 := <-c1:
-			fmt.Println("received", msg1)
-		case msg2 := <-c2:
-			fmt.Println("received", msg2)
-		}
+	select {
+	case res := <-c1:
+		fmt.Println(res)
+	case <-time.After(1 * time.Second): // timeout!
+		fmt.Println("timeout 1")
 	}
 }
