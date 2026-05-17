@@ -5,33 +5,25 @@ import (
 	"sync"
 )
 
-type SafeCounter struct {
-	v   map[string]int
-	mux sync.Mutex
+type RWSafeMap struct {
+	m   map[string]string
+	mux sync.RWMutex
 }
 
-func (c *SafeCounter) Inc(key string) {
-	c.mux.Lock()
-	defer c.mux.Unlock()
-	c.v[key]++
+func (r *RWSafeMap) Get(key string) string {
+	r.mux.RLock() // read lock (multiple readers allowed)
+	defer r.mux.RUnlock()
+	return r.m[key]
 }
 
-func (c *SafeCounter) Value(key string) int {
-	c.mux.Lock()
-	defer c.mux.Unlock()
-	return c.v[key]
+func (r *RWSafeMap) Set(key, value string) {
+	r.mux.Lock() // write lock (exclusive)
+	defer r.mux.Unlock()
+	r.m[key] = value
 }
 
 func MutexStuff() {
-	c := SafeCounter{v: make(map[string]int)}
-	var wg sync.WaitGroup
-	for i := 0; i < 1000; i++ {
-		wg.Add(1)
-		go func() {
-			c.Inc("somekey")
-			wg.Done()
-		}()
-	}
-	wg.Wait()
-	fmt.Println("somekey val:", c.Value("somekey"))
+	r := RWSafeMap{m: make(map[string]string)}
+	r.Set("status", "operational")
+	fmt.Println("status:", r.Get("status"))
 }
