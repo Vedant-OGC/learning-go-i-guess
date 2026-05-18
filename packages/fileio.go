@@ -1,22 +1,20 @@
 package packages
 
 import (
-	"fmt"
+	"bufio"
 	"os"
 )
 
 func FileIO() {
-	err := os.WriteFile("test.txt", []byte("hello file"), 0644)
+	f, err := os.Create("test.txt")
 	if err != nil {
 		panic(err)
 	}
+	defer f.Close()
 	
-	data, err := os.ReadFile("test.txt")
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(string(data))
+	w := bufio.NewWriter(f)
+	w.WriteString("buffered write\n")
+	w.Flush()
 	
-	// cleanup
 	os.Remove("test.txt")
 }
