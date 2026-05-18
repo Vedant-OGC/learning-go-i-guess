@@ -6,8 +6,9 @@ import (
 )
 
 func TimeStuff() {
-	t := time.Now()
-	// why on earth is the formatting template 2006-01-02 15:04:05???
-	// apparently it corresponds to 1 2 3 4 5 6 MST
-	fmt.Println(t.Format("2006-01-02 15:04:05"))
+	// parsing time
+	layout := "2006-01-02"
+	str := "2026-05-18"
+	t, _ := time.Parse(layout, str)
+	fmt.Println("parsed time:", t)
 }
