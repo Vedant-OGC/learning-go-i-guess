@@ -11,7 +11,8 @@ type Response struct {
 }
 
 func JsonStuff() {
-	r := &Response{Page: 1, Fruits: []string{"apple", "peach"}}
-	bolB, _ := json.Marshal(r)
-	fmt.Println(string(bolB))
+	str := `{"page": 2, "fruits": ["banana", "pear"]}`
+	var r Response
+	json.Unmarshal([]byte(str), &r)
+	fmt.Println("page:", r.Page, "fruits:", r.Fruits)
 }
