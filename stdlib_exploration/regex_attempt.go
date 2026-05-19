@@ -6,6 +6,7 @@ import (
 )
 
 func RegexAttempt() {
-	match, _ := regexp.MatchString("p([a-z]+)ch", "peach")
-	fmt.Println("match peach:", match)
+	r, _ := regexp.Compile("p([a-z]+)ch")
+	fmt.Println("find string:", r.FindString("peach punch"))
+	fmt.Println("submatch:", r.FindStringSubmatch("peach")) // [peach ea]
 }
