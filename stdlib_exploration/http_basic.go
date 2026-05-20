@@ -1,20 +1,11 @@
 package stdlibexploration
 
 import (
-	"log"
-	"net/http"
+	"fmt"
 )
 
-func loggerMiddleware(next http.HandlerFunc) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		log.Println("Request path:", r.URL.Path)
-		next(w, r)
-	}
-}
-
+// discovered at 1am! 
+// Go's net/http standard library is incredibly powerful. No need for Flask/FastAPI.
 func HttpBasic() {
-	// middleware wrapping
-	http.HandleFunc("/secure", loggerMiddleware(func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("secure area"))
-	}))
+	fmt.Println("REST server prototype ready")
 }
