@@ -1,15 +1,14 @@
 package stdlibexploration
 
 import (
-	"encoding/json"
+	"fmt"
 	"net/http"
 )
 
-func jsonHandler(w http.ResponseWriter, req *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(map[string]string{"message": "hello api"})
-}
-
 func HttpBasic() {
-	http.HandleFunc("/api", jsonHandler)
+	// query params
+	http.HandleFunc("/user", func(w http.ResponseWriter, r *http.Request) {
+		name := r.URL.Query().Get("name")
+		fmt.Fprintf(w, "User: %s", name)
+	})
 }
