@@ -5,9 +5,22 @@ import (
 	"github.com/Vedant-OGC/learning-go-i-guess/packages"
 )
 
-func TestAdd(t *testing.T) {
-	ans := packages.Add(2, 3)
-	if ans != 5 {
-		t.Errorf("Add(2, 3) = %d; want 5", ans)
+func TestAddTableDriven(t *testing.T) {
+	tests := []struct {
+		a, b int
+		want int
+	}{
+		{2, 3, 5},
+		{-1, 1, 0},
+		{0, 0, 0},
+	}
+	
+	for _, tt := range tests {
+		t.Run("testing", func(t *testing.T) {
+			ans := packages.Add(tt.a, tt.b)
+			if ans != tt.want {
+				t.Errorf("Add(%d, %d) = %d; want %d", tt.a, tt.b, ans, tt.want)
+			}
+		})
 	}
 }
