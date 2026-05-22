@@ -10,6 +10,7 @@ func Save(path string, list *TodoList) error {
 	if err != nil {
 		return err
 	}
+	// save to file, with error checking
 	return os.WriteFile(path, data, 0644)
 }
 
