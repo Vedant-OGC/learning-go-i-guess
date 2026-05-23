@@ -9,6 +9,21 @@ const (
 	Entertainment
 )
 
+func (c Category) String() string {
+	switch c {
+	case Food:
+		return "Food"
+	case Travel:
+		return "Travel"
+	case Utilities:
+		return "Utilities"
+	case Entertainment:
+		return "Entertainment"
+	default:
+		return "Other"
+	}
+}
+
 type Expense struct {
 	ID       int      `json:"id"`
 	Amount   float64  `json:"amount"`
