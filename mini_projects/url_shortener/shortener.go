@@ -2,6 +2,7 @@ package url_shortener
 
 import (
 	"math/rand"
+	"time"
 )
 
 type URLShortener struct {
@@ -24,6 +25,7 @@ func (s *URLShortener) Resolve(code string) (string, bool) {
 }
 
 func generateCode() string {
+	rand.Seed(time.Now().UnixNano())
 	letters := []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
 	b := make([]rune, 6)
 	for i := range b {
