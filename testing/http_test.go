@@ -1,25 +1,26 @@
 package mytests
 
 import (
+	"bytes"
+	"encoding/json"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"github.com/Vedant-OGC/learning-go-i-guess/mini_projects/url_shortener"
 )
 
-func TestHelloHandler(t *testing.T) {
-	req, err := http.NewRequest("GET", "/hello", nil)
-	if err != nil {
-		t.Fatal(err)
-	}
+func TestURLShortener(t *testing.T) {
+	shortener := url_shortener.NewShortener()
+	handlers := &url_shortener.Handlers{Shortener: shortener}
+	
+	reqBody, _ := json.Marshal(map[string]string{"url": "https://example.com"})
+	req, _ := http.NewRequest("POST", "/shorten", bytes.NewBuffer(reqBody))
 	
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("hello http"))
-	})
-	
+	handler := http.HandlerFunc(handlers.ShortenHandler)
 	handler.ServeHTTP(rr, req)
 	
-	if rr.Body.String() != "hello http" {
-		t.Errorf("expected 'hello http', got %s", rr.Body.String())
+	if rr.Code != http.StatusOK {
+		t.Errorf("expected 200 OK, got %d", rr.Code)
 	}
 }
