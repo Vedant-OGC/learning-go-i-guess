@@ -2,11 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/Vedant-OGC/learning-go-i-guess/packages"
+	"github.com/Vedant-OGC/learning-go-i-guess/mini_projects/todo_cli"
 )
 
 func main() {
-	fmt.Println("testing my packages!")
-	fmt.Println("5 + 3 =", packages.Add(5, 3))
-	fmt.Println("reverse 'hello':", packages.Reverse("hello"))
+	fmt.Println("welcome to learning go launcher")
+	fmt.Println("integrating todo cli...")
+	var _ = todo_cli.TodoList{}
 }
