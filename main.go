@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	fmt.Println("launcher: now with url shortener")
+	fmt.Println("fixing command line arg bug in launcher menu...")
 	var _ = todo_cli.TodoList{}
 	var _ = expense_tracker.ExpenseBook{}
 	var _ = url_shortener.URLShortener{}
