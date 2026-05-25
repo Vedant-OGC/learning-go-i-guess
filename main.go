@@ -8,7 +8,10 @@ import (
 )
 
 func main() {
-	fmt.Println("fixing command line arg bug in launcher menu...")
+	fmt.Println("--- launcher menu help ---")
+	fmt.Println("1) Todo CLI")
+	fmt.Println("2) Expense Tracker")
+	fmt.Println("3) URL Shortener")
 	var _ = todo_cli.TodoList{}
 	var _ = expense_tracker.ExpenseBook{}
 	var _ = url_shortener.URLShortener{}
