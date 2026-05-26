@@ -1,8 +1,8 @@
 package url_shortener
 
 import (
-	"math/rand"
-	"time"
+	"crypto/rand"
+	"math/big"
 )
 
 type URLShortener struct {
@@ -14,7 +14,7 @@ func NewShortener() *URLShortener {
 }
 
 func (s *URLShortener) Shorten(url string) string {
-	code := generateCode()
+	code := generateSecureCode()
 	s.Urls[code] = url
 	return code
 }
@@ -24,12 +24,12 @@ func (s *URLShortener) Resolve(code string) (string, bool) {
 	return url, ok
 }
 
-func generateCode() string {
-	rand.Seed(time.Now().UnixNano())
+func generateSecureCode() string {
 	letters := []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
 	b := make([]rune, 6)
 	for i := range b {
-		b[i] = letters[rand.Intn(len(letters))]
+		n, _ := rand.Int(rand.Reader, big.NewInt(int64(len(letters))))
+		b[i] = letters[n.Int64()]
 	}
 	return string(b)
 }
