@@ -7,3 +7,13 @@ func CalculateTotal(expenses []Expense) float64 {
 	}
 	return total
 }
+
+func FilterByCategory(expenses []Expense, cat Category) []Expense {
+	var filtered []Expense
+	for _, e := range expenses {
+		if e.Category == cat {
+			filtered = append(filtered, e)
+		}
+	}
+	return filtered
+}
