@@ -16,3 +16,6 @@ dist/
 
 # Dependency directories (only needed if we use external packages, but good to have)
 vendor/
+
+# Local JSON database files for projects
+*.json
